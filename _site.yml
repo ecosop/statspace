@@ -1,7 +1,7 @@
-name: "R-Space"
+name: "Statspace"
 output_dir: "docs"
 navbar:
-  title: "R-Space"
+  title: "Statspace"
   left:
     - text: "Home"
       href: index.html
