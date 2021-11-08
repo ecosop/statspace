@@ -14,13 +14,22 @@
 
 <title>Multilevel-Modelle</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -35,11 +44,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -52,32 +56,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -89,10 +67,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -109,40 +83,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -170,7 +117,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -182,7 +129,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -193,10 +140,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -208,7 +168,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -280,7 +239,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">R-Space</a>
+      <a class="navbar-brand" href="index.html">Statspace</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -328,7 +287,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -480,7 +439,7 @@ Gepunktete Linien zeigen 95%-Konfidenzintervalle für die Mittelwerte." width="6
 <p>Wir zeigen an dieser Stelle bewusst nicht die Details der Spezifikation. Ziel dieses Skriptes ist, auf grober Ebene das <em>Konzept</em> von Multilevel-Analysen zu verdeutlichen. Die praktische Durchführung wird bspw. in <em>Field (2012)</em> besprochen.</p>
 </div>
 <pre><code>## Linear mixed-effects model fit by REML
-##  Data: data 
+##   Data: data 
 ##        AIC      BIC    logLik
 ##   3725.124 3743.007 -1858.562
 ## 
@@ -489,7 +448,7 @@ Gepunktete Linien zeigen 95%-Konfidenzintervalle für die Mittelwerte." width="6
 ##         (Intercept) Residual
 ## StdDev:    8.001673 4.130592
 ## 
-## Fixed effects: reading_skill ~ mindfulness 
+## Fixed effects:  reading_skill ~ mindfulness 
 ##                     Value Std.Error  DF   t-value p-value
 ## (Intercept)     28.121496 2.8400089 639  9.901904       0
 ## mindfulnessTRUE  4.661775 0.3823333 639 12.192961       0
@@ -520,7 +479,7 @@ Gepunktete Linien zeigen 95%-Konfidenzintervalle für die Mittelwerte." width="6
 <ul>
 <li><p>Hier haben wir als Beispiel nicht-experimentelle Querschnittsdaten zur Veranschaulichung eines Multilevel-Modells genommen. Je nach Versuchsdesign kann es aber auch in randomisierten Experimenten durchaus sein, dass hierarchische Daten entstehen, bspw. wenn Versuchspersonen in Untergruppen eingeteilt werden. Das sollte bei der Analyse berücksichtigt werden!</p></li>
 <li><p>Ein häufiger Anwendungsfall für Multilevel-Modelle sind auch <strong>Messwiederholungsdaten</strong>. Dabei sind die einzelnen Messzeitpunkt in Versuchspersonen genestet.</p></li>
-<li><p>Es gibt keine objektive, immer zutreffende Regel dafür, um zu entscheiden, welche Effekt als <em>fixed</em> und welche als <em>random</em> Effekte modelliert werden. Hier müssen theoriegeleitete Entscheidungen getroffen werden. Die Leitfrage, um diese Entscheidung zu treffen ist: „Welcher Effekt ist von wissenschaftlichem Interesse für mich?" Das ist tendenziell ein <em>fixed</em> Effekt. Auch die umgekehrte Frage ist hilfreich: „Welcher Effekt hat möglicherweise einen verzerrenden Einfluss, den ich ‘herausrechnen’ möchte?" Das ist tendenziell ein <em>random</em> Effekt.</p></li>
+<li><p>Es gibt keine objektive, immer zutreffende Regel dafür, um zu entscheiden, welche Effekt als <em>fixed</em> und welche als <em>random</em> Effekte modelliert werden. Hier müssen theoriegeleitete Entscheidungen getroffen werden. Die Leitfrage, um diese Entscheidung zu treffen ist: „Welcher Effekt ist von wissenschaftlichem Interesse für mich?” Das ist tendenziell ein <em>fixed</em> Effekt. Auch die umgekehrte Frage ist hilfreich: „Welcher Effekt hat möglicherweise einen verzerrenden Einfluss, den ich ‘herausrechnen’ möchte?” Das ist tendenziell ein <em>random</em> Effekt.</p></li>
 <li><p>Es kann durchaus sein, dass Daten eine hierarchische Struktur ähnlich der hier vorgestellten aufweisen, ohne dass eine Modellierung in einem Multilevel-Modell notwendig ist. Dafür kann z.B. die <em>Intraclass Correlation (ICC)</em> berechnet werden; eine Korrelation, die angibt, wie ähnlich sich Beobachtungen <em>innerhalb einer Gruppe</em> sind. Eine hohe ICC deutet darauf hin, dass eine Multilevel-Analyse sinnvoll ist. Für Details verweisen wir auf Field (2012).</p></li>
 </ul>
 </div>
@@ -573,7 +532,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
