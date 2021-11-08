@@ -1,2 +1,5 @@
-# statspace
-A space for statistics and R resources
+# Statspace
+
+Ein Repository für Methodenskripte und Lernunterlagen.
+
+https://ctreffe.github.io/statspace/index.html
